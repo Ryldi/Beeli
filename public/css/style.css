@@ -1,0 +1,8 @@
+.font-pattaya{
+    font-family: 'Pattaya', sans-serif;
+}
+
+.hover-bg-warning:hover{
+    background-color: #ffc107;
+    color: white;
+}
