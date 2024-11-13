@@ -8,4 +8,21 @@ use Illuminate\Database\Eloquent\Model;
 class University extends Model
 {
     use HasFactory;
+
+    protected $table = 'universities';
+    protected $guarded = [];
+    protected $fillable = [
+        'name',
+        'acronym',
+        'logo',
+    ];
+    protected $casts = [
+        'logo' => 'binary',
+    ];
+
+    public function organizations()
+    {
+        return $this->hasMany(Organization::class);
+    }
+
 }

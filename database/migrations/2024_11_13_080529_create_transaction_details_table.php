@@ -12,11 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('transaction_details', function (Blueprint $table) {
-            $table->id();
             $table->foreignId('transaction_id')->constrained('transaction_headers');
             $table->foreignId('product_id')->constrained('products');
             $table->integer('quantity');
             //tambah tax segala macem
+            $table->primary(['transaction_id', 'product_id']);
             $table->timestamps();
         });
     }
