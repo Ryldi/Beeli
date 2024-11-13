@@ -23,6 +23,7 @@ export default {
     extend: {
       colors: {
         primary: "#1c1c22",
+        secondary: "#E17F12",
         accent: {
           DEFAULT: "#F2B518",
           hover: "#E6AE1D",
