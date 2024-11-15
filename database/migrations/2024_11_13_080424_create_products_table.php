@@ -22,6 +22,9 @@ return new class extends Migration
             $table->foreignId('organization_id')->constrained('organizations');
             $table->timestamps();
         });
+
+        DB::statement('ALTER TABLE products MODIFY image LONGBLOB');
+
     }
 
     /**

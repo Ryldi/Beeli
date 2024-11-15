@@ -16,9 +16,6 @@ class University extends Model
         'acronym',
         'logo',
     ];
-    protected $casts = [
-        'logo' => 'binary',
-    ];
 
     public function organizations()
     {

@@ -1,4 +1,4 @@
-<link rel="icon" href="{{ asset('img/favicon.png') }}">
+<link rel="icon" href="{{ asset('img/logo.png') }}">
 <link href="https://fonts.googleapis.com/css2?family=Pattaya&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
 {{-- <link rel="stylesheet" href="{{ asset('css/style.css') }}">

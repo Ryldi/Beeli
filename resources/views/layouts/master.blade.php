@@ -7,12 +7,12 @@
     @include('layouts.dependency')
 </head>
 <body>
-
     @include('components.navbar')
     
-    <div class="container">
+    <div class="container min-h-screen">
         @yield('content')
     </div>
 
+    @include('components.footer')
 </body>
 </html>

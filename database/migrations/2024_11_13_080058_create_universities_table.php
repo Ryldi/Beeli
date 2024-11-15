@@ -17,7 +17,10 @@ return new class extends Migration
             $table->string('acronym');
             $table->binary('logo');
             $table->timestamps();
+            
         });
+
+        DB::statement('ALTER TABLE universities MODIFY logo LONGBLOB');
     }
 
     /**

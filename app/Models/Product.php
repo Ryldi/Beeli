@@ -17,7 +17,8 @@ class Product extends Model
         'description', 
         'price', 
         'stock',
-        'image'
+        'img',
+        'organization_id',
     ];
 
     public function organization()
@@ -30,8 +31,8 @@ class Product extends Model
         return $this->belongsTo(TransactionDetail::class);
     }
 
-    public function cart()
+    public function carts()
     {
-        return $this->belongsTo(Cart::class);
+        return $this->hasManyThrough(Cart::class);
     }
 }

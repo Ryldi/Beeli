@@ -27,6 +27,7 @@ export default {
         accent: {
           DEFAULT: "#F2B518",
           hover: "#E6AE1D",
+          selected: "#FFF0CB",
         },
         dark: {
           DEFAULT: "#152238",

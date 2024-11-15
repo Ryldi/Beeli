@@ -26,6 +26,9 @@ return new class extends Migration
             $table->foreignId('university_id')->constrained('universities');
             $table->timestamps();
         });
+
+        DB::statement('ALTER TABLE organizations MODIFY logo LONGBLOB');
+
     }
 
     /**
