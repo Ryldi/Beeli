@@ -28,4 +28,9 @@ class Student extends Model
     {
         return $this->hasMany(TransactionHeader::class);
     }
+
+    public function addresses ()
+    {
+        return $this->hasMany(Address::class);
+    }
 }

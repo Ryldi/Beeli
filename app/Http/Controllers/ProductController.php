@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\University;
+use App\Models\Organization;
 
 class ProductController extends Controller
 {
@@ -12,7 +13,8 @@ class ProductController extends Controller
     {
         $products = Product::all();
         $universities = University::all();
-        return view('pages.main', compact('products', 'universities'));
+        $organizations = Organization::all()->take(5);
+        return view('pages.main', compact('products', 'universities', 'organizations'));
     }
 
     public function get_product_detail($id)
@@ -34,5 +36,11 @@ class ProductController extends Controller
         $products = $university->organizations->pluck('products')->flatten()->all();
 
         return view('pages.university_product', compact('university', 'products'));
+    }
+
+    public function get_product_by_organization($id)
+    {
+        $organization = Organization::with('products')->find($id);
+        return view('pages.organization', compact('organization'));
     }
 }

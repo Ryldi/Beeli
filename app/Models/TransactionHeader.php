@@ -14,7 +14,12 @@ class TransactionHeader extends Model
     protected $guarded = [];
     protected $fillable = [
         'status',
-        'student_id'
+        'student_id',
+        'total_price',
+        'shipping_fee',
+        'grand_total',
+        'address_id',
+        'snap_token'
     ];
 
     public function student()
@@ -24,6 +29,6 @@ class TransactionHeader extends Model
 
     public function details()
     {
-        return $this->hasMany(TransactionDetail::class);
+        return $this->hasMany(TransactionDetail::class, 'transaction_id');
     }
 }

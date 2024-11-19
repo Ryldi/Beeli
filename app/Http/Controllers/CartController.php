@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Cart;
+use App\Models\Product;
+use App\Models\Student;
 
 class CartController extends Controller
 {
@@ -60,5 +62,46 @@ class CartController extends Controller
         ]);
         
         return redirect()->route('cart.view')->with('success', 'Product quantity updated');
+    }
+
+
+    public function checkout(Request $request)
+    {
+        $request->validate([
+            'selected_products' => 'required'
+        ]);
+
+        $products = json_decode($request->input('selected_products'), true);
+
+        if (count($products) == 0) {
+            return redirect()->route('cart.view')->with('error', 'Select at least one product');
+        }
+
+        $total_price = 0;
+
+        $product_details = [];
+        foreach ($products as $product) {
+            $prod = Product::find($product['id']);
+            $total_price += $prod->price * $product['quantity'];
+            $product_details[] = [
+                'product' => $prod,
+                'quantity' => $product['quantity']
+            ];
+        }
+
+        session(['student' => Student::with('addresses')->find(session('student')->id)]);
+
+        session(['product_details' => $product_details, 'total_price' => $total_price]);
+
+        return view('pages.checkout', compact('product_details', 'total_price'));
+
+    }
+
+    public function index_checkout()
+    {
+        $product_details = session('product_details');
+        $total_price = session('total_price');
+        
+        return view('pages.checkout', compact('product_details', 'total_price'));
     }
 }

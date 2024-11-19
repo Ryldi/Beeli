@@ -9,8 +9,9 @@
     <div class="">
         <span class="text-2xl font-poppins font-medium">Sign Up your personal account</span>
     </div>
-    <form class="pt-8" method="POST">
+    <form class="pt-8" method="POST" action="{{ route('register_personal.post') }}">
         @csrf
+        @method('POST')
         <div class="relative z-0 w-full mb-5 group">
             <input type="email" name="floating_email" id="floating_email" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-accent focus:outline-none focus:ring-0 focus:border-accent peer" placeholder=" " required />
             <label for="floating_email" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-accent duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-accent peer-focus:dark:text-accent peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Email address</label>
@@ -24,7 +25,7 @@
             <label for="floating_username" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-accent duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-accent peer-focus:dark:text-accent peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Username</label>
         </div>
         <div class="relative z-0 w-full mb-5 group mt-5">
-            <input type="tel" pattern="[0-9]{15}" name="floating_phone" id="floating_phone" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-accent focus:outline-none focus:ring-0 focus:border-accent peer" placeholder="" required />
+            <input type="tel" pattern="[0-9]{8-15}" name="floating_phone" id="floating_phone" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-accent focus:outline-none focus:ring-0 focus:border-accent peer" placeholder="" required />
             <label for="floating_phone" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-accent duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-accent peer-focus:dark:text-accent peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Phone Number [08XXXXXXXXX]</label>
         </div>
         <div class="flex justify-center mt-20">
@@ -34,7 +35,7 @@
 </div>
 
 <div class="flex flex-col items-center justify-center pt-10">
-    <a href="{{ route('register_organization.view') }}" class="text-secondary hover:text-gray-500 transition-all duration-500">Register your organization account</a>
+    <a href="{{ route('register_organization.view') }}" class="hidden text-secondary hover:text-gray-500 transition-all duration-500">Register your organization account</a>
     <span>Already have an account? <a href="{{ route('login_personal.view') }}" class="text-secondary hover:text-gray-500 transition-all duration-500">Login Here!</a></span>
 </div>
   

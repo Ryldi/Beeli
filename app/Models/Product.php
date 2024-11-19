@@ -28,7 +28,7 @@ class Product extends Model
 
     public function transaction_detail()
     {
-        return $this->belongsTo(TransactionDetail::class);
+        return $this->hasOne(TransactionDetail::class);
     }
 
     public function carts()

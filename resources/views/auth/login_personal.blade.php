@@ -30,7 +30,7 @@
 </div>
 
 <div class="flex flex-col items-center pt-10">
-    <a href="{{ route('login_organization.view') }}" class="text-secondary hover:text-gray-500 transition-all duration-500">Login to your organization account</a>
+    <a href="{{ route('login_organization.view') }}" class="hidden text-secondary hover:text-gray-500 transition-all duration-500">Login to your organization account</a>
     <span>Doesn't have an account? <a href="{{ route('register_personal.view') }}" class="text-secondary hover:text-gray-500 transition-all duration-500">Create a Beeli Account</a></span>
 </div>
 

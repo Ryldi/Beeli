@@ -17,11 +17,11 @@ return new class extends Migration
             $table->string('acronym');
             $table->string('email');
             $table->string('password');
-            $table->string('description');
+            $table->text('description');
             $table->integer('balance');
             $table->binary('logo');
             $table->string('region');
-            $table->integer('phone');
+            $table->bigInteger('phone');
             $table->integer('popularity'); //nambah ketika ada transaksi
             $table->foreignId('university_id')->constrained('universities');
             $table->timestamps();

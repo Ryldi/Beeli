@@ -7,9 +7,10 @@
     @foreach ($university->organizations as $organization)
         @if ($organization->products->count() > 0)
         <div class="bg-grey/60 rounded-lg shadow-lg p-4">
-            <div class="">
+            <a href="{{ route('organization.view', $organization->id) }}" class="flex gap-4 items-center mb-5">
+                <img src="data:image/jpeg;base64,{{ base64_encode($organization->logo) }}" alt="" class="w-14 object-cover rounded-full">
                 <h3 class="font-semibold text-lg">{{ $organization->name }}</h3>
-            </div>
+            </a>
             @include('components.products_card', ['products' => $organization->products])
         </div>
         @endif

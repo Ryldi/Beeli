@@ -20,11 +20,11 @@ class TransactionDetail extends Model
 
     public function transaction_header()
     {
-        return $this->belongsTo(TransactionHeader::class);
+        return $this->belongsTo(TransactionHeader::class, 'transaction_id');
     }
 
     public function product()
     {
-        return $this->hasOne(Product::class);
+        return $this->belongsTo(Product::class);
     }
 }

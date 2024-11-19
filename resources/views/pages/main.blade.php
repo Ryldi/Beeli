@@ -22,4 +22,13 @@
     @include('components.universities_card', ['universities' => $universities])
 </div>
 
+<div class="container mx-auto py-8">
+    <div class="flex justify-between items-center mb-6">
+        <h2 class="text-2xl font-bold">ORGANIZATIONS</h2>
+        <a href="{{ route('organizations.view') }}" class="text-black hover:text-accent transition-all duration-500">See All &gt;</a>
+    </div>
+
+    @include('components.organizations_card', ['organizations' => $organizations])
+</div>
+
 @endsection

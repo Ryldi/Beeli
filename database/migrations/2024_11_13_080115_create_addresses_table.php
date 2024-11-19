@@ -11,15 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('transaction_headers', function (Blueprint $table) {
+        Schema::create('addresses', function (Blueprint $table) {
             $table->id();
-            $table->string('status');
             $table->foreignId('student_id')->constrained('students');
-            $table->integer('total_price');
-            $table->integer('shipping_fee');
-            $table->integer('grand_total');
-            $table->string('snap_token')->nullable();
-            $table->foreignId('address_id')->constrained('addresses')->nullable()->onDelete('cascade');
+            $table->string('recipient_name');
+            $table->bigInteger('phone');
+            $table->string('street');
+            $table->string('subdistrict');
+            $table->string('city');
+            $table->string('province');
+            $table->string('postal_code');
+            $table->boolean('main')->default(false);
             $table->timestamps();
         });
     }
@@ -29,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('transaction_headers');
+        Schema::dropIfExists('addresses');
     }
 };
