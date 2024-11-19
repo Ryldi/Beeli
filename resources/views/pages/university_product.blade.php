@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
-<div class="container mx-auto mt-40 px-14 flex flex-col items-center">
+<div class="container mx-auto mt-40 mb-10 px-14 flex flex-col items-center">
     <img src="data:image/jpeg;base64,{{ base64_encode($university->logo) }}" alt="" class="w-1/6 object-cover mb-10">
     <div class="text-2xl font-semibold text-center mb-10">{{ $university->name }}</div>
     @foreach ($university->organizations as $organization)
