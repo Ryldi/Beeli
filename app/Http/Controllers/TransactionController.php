@@ -18,7 +18,7 @@ class TransactionController extends Controller
             return redirect()->route('checkout.view')->with('error', 'Select an address');
         }
 
-        // dd($request);
+
         $products = json_decode($request->input('selected_products'), true);
 
         $transaction = TransactionHeader::create([
@@ -42,65 +42,43 @@ class TransactionController extends Controller
 
         $address = Address::find($request->address_id);
 
-        // Set your Merchant Server Key
-        \Midtrans\Config::$serverKey = config('midtrans.serverKey');
-        // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
-        \Midtrans\Config::$isProduction = false;
-        // Set sanitization on (default)
-        \Midtrans\Config::$isSanitized = true;
-        // Set 3DS transaction for credit card to true
-        \Midtrans\Config::$is3ds = true;
+        // // Set your Merchant Server Key
+        // \Midtrans\Config::$serverKey = 'SB-Mid-server-ZE3JsMqJiKwS4wLhDnjngh3q';
+        // // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
+        // \Midtrans\Config::$isProduction = false;
+        // // Set sanitization on (default)
+        // \Midtrans\Config::$isSanitized = true;
+        // // Set 3DS transaction for credit card to true
+        // \Midtrans\Config::$is3ds = true;
 
+        // $params = array(
+        //     'transaction_details' => array(
+        //         'order_id' => rand(),
+        //         'gross_amount' => 10000,
+        //     )
+        // );
 
-        $transaction_details = array(
-            'order_id' => $transaction->id,
-            'gross_amount' => $transaction->grand_total , // no decimal allowed for creditcard
-        );
-
-        // $item_details = [];
-
-        // foreach ($products as $product) {
-        //     $product_obj = Product::find($product['id']);
-        //     // dd($product_obj);
-        //     $item_details[] = array(
-        //         'id' => $product['id'],
-        //         'price' => $product_obj->price * $product['quantity'],
-        //         'quantity' => $product['quantity'],
-        //         'name' => $product_obj->name
-        //     );
-        // } // gapakai karna shopping fee ga bakal keitung di midtrans dan gross amount ketimpa
+        // try {
+        //     $snapToken = \Midtrans\Snap::getSnapToken($params);
+        //     dd($snapToken);
+        // } catch (\Throwable $th) {
+        //     throw $th;
+        // }
         
-        $address = Address::find($request->address_id);
-        
-        // Optional
-        $shipping_address = array(
-            'first_name'    => $address->recipient_name,
-            'address'       => $address->street,
-            'city'          => $address->city,
-            'postal_code'   => $address->postal_code,
-            'phone'         => $address->phone,
-            'country_code'  => 'IDN'
-        );
-        
-        // Optional
-        $customer_details = array(
-            'first_name'    => session('student')->username,
-            'email'         => session('student')->email,
-            'phone'         => session('student')->phone,
-            'shipping_address' => $shipping_address
-        );
-        
-        // Fill SNAP API parameter
-        $params = array(
-            'transaction_details' => $transaction_details,
-            'customer_details' => $customer_details,
-            // 'item_details' => $item_details,
-        );
+        // try {
+        //     // Get Snap Payment Page URL
+        //     $paymentUrl = \Midtrans\Snap::createTransaction($params)->redirect_url;
+            
+        //     dd($paymentUrl);
+        //     // Redirect to Snap Payment Page
+        //     header('Location: ' . $paymentUrl);
+        //   }
+        //   catch (Exception $e) {
+        //     echo $e->getMessage();
+        // }
 
-        $snapToken = \Midtrans\Snap::getSnapToken($params);
-
-        $transaction->snap_token = $snapToken;
-        $transaction->save();
+        // $transaction->snap_token = $snapToken;
+        // $transaction->save();
 
         return redirect()->route('order.view', ['id' => $transaction->id])->with('success', 'Checkout Success, Please click your order to pay');
 
