@@ -43,7 +43,6 @@ class TransactionController extends Controller
         $address = Address::find($request->address_id);
 
         // // Set your Merchant Server Key
-        // \Midtrans\Config::$serverKey = 'SB-Mid-server-ZE3JsMqJiKwS4wLhDnjngh3q';
         // // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
         // \Midtrans\Config::$isProduction = false;
         // // Set sanitization on (default)
