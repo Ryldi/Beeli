@@ -4,7 +4,7 @@
 
 @include('components.toast')
 
-<div class="container mx-auto mt-40 px-14 flex flex-col md:flex-row">
+<div class="container mx-auto mt-40 px-14 flex flex-row">
     <div class="flex flex-col justify-start mb-6 gap-5">
         <div class="mr-16">
             <img src="data:image/jpeg;base64,{{ base64_encode($product->image) }}" alt="" width="400" class="rounded-2xl">
