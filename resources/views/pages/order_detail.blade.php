@@ -75,7 +75,7 @@
         @csrf
         @method('PUT')
         <input type="hidden" name="status" value="Paid">
-        <button type="submit" class="text-xl px-4 py-1 bg-accent text-white rounded-lg hover:bg-white hover:text-accent hover:border hover:border-accent transition-all duration-500" >
+        <button id="pay-button" type="submit" class="text-xl px-4 py-1 bg-accent text-white rounded-lg hover:bg-white hover:text-accent hover:border hover:border-accent transition-all duration-500" >
             Pay
         </button>
     </form>
@@ -123,6 +123,32 @@
         }
     }, 5000);
 </script>
+
+<script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ config('midtrans.clientKey') }}"></script>
+<script type="text/javascript">
+    document.getElementById('pay-button').onclick = function(){
+        event.preventDefault();
+        // SnapToken acquired from previous step
+        snap.pay('{{ $transaction->snap_token }}', {
+            // Optional
+            onSuccess: function(result){
+                const form = document.querySelector('form[action="{{ route('order.update', ['id' => $transaction->id]) }}"]');
+                if (form) {
+                    form.submit(); // Submit the form after payment success
+                }
+            },
+            // Optional
+            onPending: function(result){
+            /* You may add your own js here, this is just example */ document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
+            },
+            // Optional
+            onError: function(result){
+            /* You may add your own js here, this is just example */ document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
+            }
+        });
+    };
+</script>
+
 
 <style>
     @keyframes progress {
